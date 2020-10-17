@@ -434,11 +434,11 @@ func (objMgr *ObjectManager) CreateEADefinition(eadef EADefinition) (*EADefiniti
 	return newEadef, err
 }
 
-func (objMgr *ObjectManager) CreateHostRecord(enabledns bool, recordName string, netview string, dnsview string, cidr string, ipAddr string, macAddress string, ea EA) (*HostRecord, error) {
+func (objMgr *ObjectManager) CreateHostRecord(enabledns bool, recordName string, netview string, dnsview string, cidr string, ipAddr string, enabledhcp bool, macAddress string, ea EA) (*HostRecord, error) {
 
 	eas := objMgr.extendEA(ea)
 
-	recordHostIpAddr := NewHostRecordIpv4Addr(HostRecordIpv4Addr{Mac: macAddress})
+	recordHostIpAddr := NewHostRecordIpv4Addr(HostRecordIpv4Addr{Mac: macAddress, EnableDhcp: enabledhcp})
 
 	if ipAddr == "" {
 		recordHostIpAddr.Ipv4Addr = fmt.Sprintf("func:nextavailableip:%s,%s", cidr, netview)

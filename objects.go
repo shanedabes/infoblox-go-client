@@ -407,12 +407,13 @@ func NewRecordCNAME(rc RecordCNAME) *RecordCNAME {
 }
 
 type HostRecordIpv4Addr struct {
-	IBBase   `json:"-"`
-	Ipv4Addr string `json:"ipv4addr,omitempty"`
-	Ref      string `json:"_ref,omitempty"`
-	Mac      string `json:"mac,omitempty"`
-	View     string `json:"view,omitempty"`
-	Cidr     string `json:"network,omitempty"`
+	IBBase     `json:"-"`
+	Ipv4Addr   string `json:"ipv4addr,omitempty"`
+	Ref        string `json:"_ref,omitempty"`
+	Mac        string `json:"mac,omitempty"`
+	View       string `json:"view,omitempty"`
+	Cidr       string `json:"network,omitempty"`
+	EnableDhcp bool   `json:"configure_for_dhcp,omitempty"`
 }
 
 func NewHostRecordIpv4Addr(hostAddr HostRecordIpv4Addr) *HostRecordIpv4Addr {
