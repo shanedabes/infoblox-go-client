@@ -413,7 +413,7 @@ type HostRecordIpv4Addr struct {
 	Mac        string `json:"mac,omitempty"`
 	View       string `json:"view,omitempty"`
 	Cidr       string `json:"network,omitempty"`
-	EnableDhcp bool   `json:"configure_for_dhcp,omitempty"`
+	EnableDhcp *bool  `json:"configure_for_dhcp,omitempty"`
 }
 
 func NewHostRecordIpv4Addr(hostAddr HostRecordIpv4Addr) *HostRecordIpv4Addr {

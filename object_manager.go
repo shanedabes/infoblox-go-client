@@ -438,7 +438,9 @@ func (objMgr *ObjectManager) CreateHostRecord(enabledns bool, recordName string,
 
 	eas := objMgr.extendEA(ea)
 
-	recordHostIpAddr := NewHostRecordIpv4Addr(HostRecordIpv4Addr{Mac: macAddress, EnableDhcp: enabledhcp})
+	enableDHCP := new(bool)
+	*enableDHCP = enabledhcp
+	recordHostIpAddr := NewHostRecordIpv4Addr(HostRecordIpv4Addr{Mac: macAddress, EnableDhcp: enableDHCP})
 
 	if ipAddr == "" {
 		recordHostIpAddr.Ipv4Addr = fmt.Sprintf("func:nextavailableip:%s,%s", cidr, netview)
@@ -458,7 +460,7 @@ func (objMgr *ObjectManager) CreateHostRecord(enabledns bool, recordName string,
 
 	ref, err := objMgr.connector.CreateObject(recordHost)
 	if err != nil {
-		return nil,err
+		return nil, err
 	}
 	recordHost.Ref = ref
 	err = objMgr.connector.GetObject(recordHost, ref, &recordHost)
